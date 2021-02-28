@@ -10,8 +10,8 @@ export default {
   name: 'CardContent',
   props: {
     id: {
-      type: String,
-      default: () => '',
+      type: Number,
+      default: () => 0,
     },
     name: {
       type: String,

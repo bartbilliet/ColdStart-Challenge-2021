@@ -17,9 +17,12 @@ export default {
     },
   },
   actions: {
-    async placeOrderAction({ commit }, IcecreamId) {
+    async placeOrderAction({ commit }, icecreamId) {
       try {
-        const response = await axios.post(`${API}/orders`, { IcecreamId });
+        const data = {
+          IcecreamId: icecreamId,
+        };
+        const response = await axios.post(`${API}/orders`, data);
         const order = parseItem(response, 201);
         commit(ORDER, order);
         return order;
