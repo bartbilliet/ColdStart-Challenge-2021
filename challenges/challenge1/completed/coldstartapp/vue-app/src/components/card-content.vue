@@ -1,4 +1,5 @@
 <script>
+
 export default {
   name: 'CardContent',
   props: {
@@ -20,6 +21,9 @@ export default {
     },
   },
   methods: {
+    async placePreOrder() {
+      // TODO: call API
+    },
   },
 };
 </script>
@@ -36,5 +40,10 @@ export default {
       </div>
       <p class="description">{{ description }}</p>
     </div>
+
+    <div v-if="!user">
+      <a @clicked="placePreOrder">Place pre-order</a>
+    </div>
+
   </div>
 </template>
