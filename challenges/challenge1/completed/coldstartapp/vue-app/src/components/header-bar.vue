@@ -25,11 +25,16 @@ export default {
         <div class="navbar-start">
           <router-link class="navbar-item nav-home" to="/">Home</router-link>
 
-            <a class="navbar-item"><AuthLogin provider="GitHub" /></a>
-            <a class="navbar-item"><AuthLogin provider="AAD" /></a>
-            <a class="navbar-item"><AuthLogout /></a>
-          </div>
+          <a class="navbar-item" v-if="!user"><AuthLogin provider="GitHub" /></a>
+          <a class="navbar-item" v-if="!user"><AuthLogin provider="AAD" /></a>
+
+          <a class="navbar-item" v-if="user"><AuthLogout /></a>
         </div>
+      </div>
     </nav>
+
+    <div>
+      Welcome {{ user.email }}
+    </div>
   </header>
 </template>
