@@ -36,7 +36,7 @@ export default {
           <a class="navbar-item" v-if="!user"><AuthLogin provider="AAD" /></a>
 
           <div v-if="user">
-            Welcome {{ user }}. (<a class="navbar-item"><AuthLogout /></a>)
+            Welcome {{ user.userDetails }}. (<a class="navbar-item"><AuthLogout /></a>)
           </div>
         </div>
       </div>

@@ -42,3 +42,6 @@ npm start
 
    Doing this will create the CI/CD file, found in /.github/workflows. Make sure to adapth the source files path to the challenge you wish to deploy. 
 
+- Create a storage account, as seen here: https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal
+
+  Add the storage connection string in a environment variable on the static web app, called: AZURE_STORAGE_CONNECTION_STRING
