@@ -34,3 +34,11 @@ npm start
 
 - ✅ [Visual Studio Code](https://code.visualstudio.com?ocid=aid3027557)
 - ✅ [Aure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?ocid=aid3027557)
+
+
+ ## Running the application on Azure: 
+
+ - Create an Azure Static Web App in the portal, as seen here: https://docs.microsoft.com/en-us/azure/static-web-apps/get-started-portal?tabs=vue. 
+
+   Doing this will create the CI/CD file, found in /.github/workflows. Make sure to adapth the source files path to the challenge you wish to deploy. 
+
