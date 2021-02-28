@@ -1,4 +1,5 @@
 const { getUser } = require('../shared/user-utils');
+const { QueueServiceClient } = require('@azure/storage-queue');
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = async function (context, req) {
