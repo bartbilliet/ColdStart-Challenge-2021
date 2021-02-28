@@ -1,6 +1,9 @@
 <script>
+import getUserInfo from '@/assets/js/userInfo';
 
 export default {
+  components: {
+  },
   name: 'CardContent',
   props: {
     id: {
@@ -19,6 +22,15 @@ export default {
       type: String,
       default: () => '',
     },
+  },
+  data() {
+    return {
+      user: undefined,
+      message: '',
+    };
+  },
+  async created() {
+    this.user = await getUserInfo();
   },
   methods: {
     async placePreOrder() {
@@ -41,7 +53,7 @@ export default {
       <p class="description">{{ description }}</p>
     </div>
 
-    <div v-if="!user">
+    <div v-if="user">
       <a @clicked="placePreOrder">Place pre-order</a>
     </div>
 
