@@ -28,13 +28,12 @@ export default {
           <a class="navbar-item" v-if="!user"><AuthLogin provider="GitHub" /></a>
           <a class="navbar-item" v-if="!user"><AuthLogin provider="AAD" /></a>
 
-          <a class="navbar-item" v-if="user"><AuthLogout /></a>
+          <div v-if="user">
+            Welcome {{ user.email }}
+            <a class="navbar-item"><AuthLogout /></a>
+          </div>
         </div>
       </div>
     </nav>
-
-    <div>
-      Welcome {{ user.email }}
-    </div>
   </header>
 </template>
