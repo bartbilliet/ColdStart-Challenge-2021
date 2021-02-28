@@ -25,6 +25,10 @@ export default {
       type: String,
       default: () => '',
     },
+    orderMessage: {
+      type: Number,
+      default: () => 0,
+    },
   },
   data() {
     return {
@@ -41,6 +45,7 @@ export default {
       this.errorMessage = undefined;
       try {
         await this.placeOrderAction(this.id);
+        this.orderMessage = 'Order placed succesfully!';
       } catch (error) {
         this.errorMessage = 'Unauthorized';
       }
@@ -62,7 +67,7 @@ export default {
       <p class="description">{{ description }}</p>
     </div>
 
-    <ButtonFooter v-if="!user" @clicked="placePreOrder" label="Place Order" />
-
+    <ButtonFooter v-if="user" @clicked="placePreOrder" label="Place Order" />
+    <div v-if="orderMessage">{{orderMessage}}</div>
   </div>
 </template>
