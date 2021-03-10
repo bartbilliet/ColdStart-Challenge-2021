@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "bbdevcoldstartchallenge"
+		},
+		"AzureDataFactory_sourceblobstorage_connectionString": {
+			"value": ""
+		},
+		"bbdevcoldstartchallengedb_connectionString": {
+			"value": ""
+		},
+		"bbdevcoldstartchallenge_properties_typeProperties_baseUrl": {
+			"value": "https://bbdevcoldstartchallenge.vault.azure.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
