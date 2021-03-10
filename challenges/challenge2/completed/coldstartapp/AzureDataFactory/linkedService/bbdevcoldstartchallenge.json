@@ -1,0 +1,10 @@
+{
+	"name": "bbdevcoldstartchallenge",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://bbdevcoldstartchallenge.vault.azure.net/"
+		}
+	}
+}
