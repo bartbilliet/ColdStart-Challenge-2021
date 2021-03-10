@@ -1,0 +1,40 @@
+{
+	"name": "SourceDataset_h6y",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataFactory_sourceblobstorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "coldstart-orders-historical.csv",
+				"container": "azuredatafactory-input"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "User",
+				"type": "String"
+			},
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Id",
+				"type": "String"
+			},
+			{
+				"name": "IcecreamId",
+				"type": "String"
+			}
+		]
+	}
+}
