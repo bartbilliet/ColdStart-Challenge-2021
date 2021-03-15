@@ -61,8 +61,7 @@ async function getActionsList() {
           features: [
             {
               name: v.Name,
-              Description: v.Description,
-              ImageUrl: v.ImageUrl
+              Description: v.Description
             },
           ],
         };
