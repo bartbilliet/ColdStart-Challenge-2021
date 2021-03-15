@@ -7,9 +7,14 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "@azure/cognitiveservices-personalizer": "^2.0.1",
+    "@azure/ms-rest-azure-js": "^2.1.0",
+    "@azure/ms-rest-js": "^2.2.3",
     "dotenv": "^8.2.0",
+    "readline-sync": "^1.4.10",
     "tedious": "^11.0.5",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "uuidv1": "^1.6.14"
   },
   "devDependencies": {}
 }

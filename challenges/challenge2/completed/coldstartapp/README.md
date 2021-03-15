@@ -150,7 +150,7 @@ npm install
 npm start
 ```
 
-## Inserting all IceCreams from catalog.json into Azure SQL: 
+## Challenge 2: Inserting all IceCreams from catalog.json into Azure SQL: 
 
 ```SQL
 DECLARE @Json AS NVARCHAR(MAX) = '{
