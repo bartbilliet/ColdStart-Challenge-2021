@@ -15,6 +15,7 @@ export default {
       routePath: '/catalog',
       showModal: false,
       title: 'Our Ice Creams',
+      recommendedTitle: 'Recommended Ice Creams',
     };
   },
   components: {
@@ -24,13 +25,21 @@ export default {
   },
   async created() {
     await this.getCatalog();
+    await this.getRecommendationAction();
   },
   computed: {
-    ...mapGetters('catalog', { catalog: 'catalog' }),
+    ...mapGetters('catalog', { catalog: 'catalog', recommendation: 'recommendation' }),
+    recommendedResults() {
+      return this.catalog.filter(
+        (x) => (
+          this.recommendation.some((y) => (y.Id === x.Id))
+        ),
+      );
+    },
   },
   methods: {
     ...mapActions('icecreams', ['buyIcecreamAction']),
-    ...mapActions('catalog', ['getCatalogAction']),
+    ...mapActions('catalog', ['getCatalogAction', 'getRecommendationAction']),
     askToBuy(icecream) {
       this.icecreamToBuy = icecream;
       this.showModal = true;
@@ -59,14 +68,30 @@ export default {
         this.errorMessage = 'Unauthorized';
       }
     },
+    async getRecommendation() {
+      this.errorMessage = undefined;
+      try {
+        await this.getRecommendationAction();
+      } catch (error) {
+        this.errorMessage = 'Unauthorized';
+      }
+    },
   },
 };
 </script>
 
 <template>
   <div class="content-container">
-    <ListHeader :title="title" @refresh="getCatalog" :routePath="routePath">
+    <ListHeader
+      :title="recommendedTitle"
+      @refresh="getRecommendation"
+      :routePath="routePath">
     </ListHeader>
+    <CatalogList
+      :icecreams="recommendedResults"
+      :errorMessage="errorMessage"
+      @bought="askToBuy($event)" />
+    <ListHeader :title="title" @refresh="getCatalog" :routePath="routePath"></ListHeader>
     <div class="columns is-multiline is-variable">
       <div class="column" v-if="catalog">
         <CatalogList

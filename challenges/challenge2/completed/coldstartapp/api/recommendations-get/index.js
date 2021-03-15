@@ -102,10 +102,11 @@ module.exports = async function (context, req) {
         console.log("\nPersonalization service thinks you would like to have:\n")
         console.log(rankResponse.rewardActionId);
 
-        var recommendedResult = 
-        {
-            iceCreamId: rankResponse.rewardActionId
-        }
+        var recommendedResult = [
+            {
+                Id: parseInt(rankResponse.rewardActionId)
+            }
+        ]
 
         context.res.status(200).send(recommendedResult);
 
