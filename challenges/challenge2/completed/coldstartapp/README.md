@@ -1,5 +1,18 @@
 # ColdStart Web Application - Challenge 1 Solution
 
+## Personal comment
+All code written to solve this challenge can be found in this **\completed** folder. 
+
+The code is written very quickly in a few spare hours, with the goal to learn and experiment with Azure functionality in a kind of quick hackaton/poc way. 
+No attention was paid to refactoring, catching errors, or cleaning up code, since 2 weeks later the clean solution will be published by ColdStart-Challenge anyway. 
+
+Vue.js and node.js are not my usual frameworks, so I'm very well aware code could be written much-much more optimal. 
+
+See all the way at the bottom of this readme also for manually run commands for this part of the challenge ("**My solution challenge 2**"). 
+
+The site is published at: https://calm-forest-037926d03.azurestaticapps.net
+
+
 ## Introduction
 
 This is a possible solution for the first coding challenge. The objectives were the following:
@@ -150,7 +163,7 @@ npm install
 npm start
 ```
 
-## Challenge 2: Inserting all IceCreams from catalog.json into Azure SQL: 
+## My solution challenge 2: Inserting all IceCreams from catalog.json into Azure SQL (manually executed)
 
 ```SQL
 DECLARE @Json AS NVARCHAR(MAX) = '{
@@ -229,4 +242,15 @@ INSERT INTO [dbo].[Icecreams]
 	)
   ```
 
-  
+## My solution challenge 2: Create personalizer resource in Azure: 
+1. https://docs.microsoft.com/en-us/azure/cognitive-services/personalizer/how-to-create-resource
+2. https://docs.microsoft.com/en-us/azure/cognitive-services/personalizer/how-to-settings
+
+## My solution challenge 2: To run this code, following environment variables need to be set: 
+- AZURE_STORAGE_CONNECTIONSTRING
+- DBUSER
+- DBPASS
+- DBSERVER
+- DBNAME
+- PERSONALIZERSERVICEKEY
+- PERSONALIZERBASEURI ("https://" + PERSONALIZERBASEURI + ".cognitiveservices.azure.com")
