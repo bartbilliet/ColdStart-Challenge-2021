@@ -1,5 +1,17 @@
 # ColdStart Web Application - Getting started
 
+## Personal comment
+All code written to solve this challenge can be found in this **\completed** folder. 
+
+The code is written very quickly in a few spare hours, with the goal to learn and experiment with Azure functionality in a kind of quick hackaton/poc way. 
+No attention was paid to refactoring, catching errors, or cleaning up code, since 2 weeks later the clean solution will be published by ColdStart-Challenge anyway. 
+
+Vue.js and node.js are not my usual frameworks, so I'm very well aware code could be written much-much more optimal. 
+
+See all the way at the bottom of this readme also for manually run commands for this part of the challenge ("**My solution challenge 1**"). 
+
+The site is published at: https://calm-forest-037926d03.azurestaticapps.net
+
 ## Introduction
 
 This is a starter web application for Azure Static Web Apps. It consists of two components:
@@ -36,7 +48,7 @@ npm start
 - ✅ [Aure Functions Core Tools](https://docs.microsoft.com/en-us/azure/azure-functions/functions-run-local?ocid=aid3027557)
 
 
- ## Running the application on Azure: 
+ ## My solution challenge 1: Running the application on Azure
 
  - Create an Azure Static Web App in the portal, as seen here: https://docs.microsoft.com/en-us/azure/static-web-apps/get-started-portal?tabs=vue. 
 
