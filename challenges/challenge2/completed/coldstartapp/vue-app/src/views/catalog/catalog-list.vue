@@ -12,6 +12,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    promoted: {
+      type: Number,
+      default: () => 0,
+    },
     errorMessage: {
       type: String,
       default: () => '',

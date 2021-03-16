@@ -15,7 +15,7 @@ export default {
       routePath: '/catalog',
       showModal: false,
       title: 'Our Ice Creams',
-      recommendedTitle: 'Recommended Ice Creams',
+      recommendedTitle: 'Our recommended Ice Creams',
     };
   },
   components: {
@@ -55,8 +55,15 @@ export default {
       this.closeModal();
       if (this.icecreamToBuy) {
         captains.log(`You said you want to buy ${this.icecreamToBuy.Name}`);
+
+        // Add shipping address
         captains.log(`Address: ${shippingAddress}`);
         this.icecreamToBuy.ShippingAddress = shippingAddress;
+
+        // Add the recommendation results
+        // (we need the eventId & IceCreamId later to give the reward)
+        this.icecreamToBuy.recommendedResults = this.recommendation;
+
         this.buyIcecreamAction(this.icecreamToBuy);
       }
     },

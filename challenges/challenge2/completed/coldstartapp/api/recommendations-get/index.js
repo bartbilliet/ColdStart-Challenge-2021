@@ -101,9 +101,16 @@ module.exports = async function (context, req) {
         console.log("\nPersonalization service thinks you would like to have:\n")
         console.log(rankResponse.rewardActionId);
 
+        // These probability scores should start changing as rewards are being given
+        console.log("\nPersonalization service ranked the actions with the probabilities as below:\n");
+        for (let i = 0; i < rankResponse.ranking.length; i++) {
+             console.log(JSON.stringify(rankResponse.ranking[i]) + "\n");
+        }
+
         var recommendedResult = [
             {
-                Id: parseInt(rankResponse.rewardActionId)
+                Id: parseInt(rankResponse.rewardActionId),
+                EventId: rankRequest.eventId
             }
         ]
 
@@ -113,20 +120,4 @@ module.exports = async function (context, req) {
     catch (error) {
         context.res.status(500).send(error);
     }
-
-    //TODO: implement this part in the orders API, to reward when a recommended order has been placed
-    // Display top choice to user, user agrees or disagrees with top choice
-    // const reward = getReward();
-
-    // console.log("\nPersonalization service ranked the actions with the probabilities as below:\n");
-    // for (let i = 0; i < rankResponse.ranking.length; i++) {
-    //     console.log(JSON.stringify(rankResponse.ranking[i]) + "\n");
-    // }
-
-    // // Send the reward for the action based on user response.
-    // const rewardRequest = {
-    //     value: reward
-    // }
-
-    // await personalizerClient.events.reward(rankRequest.eventId, rewardRequest);
 }
