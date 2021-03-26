@@ -18,7 +18,7 @@ async function getCatalogById(id) {
   let result = await pool.request()
     .query(`SELECT * FROM dbo.Icecreams WHERE [Id] = ` + id); //yep, I know, suspectable to SQL injection - not investing too much time as this is draft code, trying to understand Azure instead of learning node.js
 
-  return result.recordset;
+  return result.recordset[0];
 }
 
 
