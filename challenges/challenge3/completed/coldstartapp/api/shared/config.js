@@ -5,6 +5,7 @@ const config = {
   azure_storage_connectionstring: process.env.AZURE_STORAGE_CONNECTIONSTRING,
   personalizer_key: process.env.PERSONALIZER_KEY,
   personalizer_baseuri: process.env.PERSONALIZER_BASEURI,
+  partitionKey: { kind: "Hash", paths: ["/category"] }
 };
 
 const sqlConfig = {
