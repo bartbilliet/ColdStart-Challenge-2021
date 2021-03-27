@@ -1,5 +1,18 @@
 # ColdStart Web Application - Challenge 2 Solution
 
+## Personal comment
+All code written to solve this challenge can be found in this **\completed** folder. 
+
+The code is written very quickly in a few spare hours, with the goal to learn and experiment with Azure functionality in a kind of quick hackaton/poc way. 
+No attention was paid to refactoring, catching errors, or cleaning up code, since 2 weeks later the clean solution will be published by ColdStart-Challenge anyway. 
+
+Vue.js and node.js are not my usual frameworks, so I'm very well aware code could be written much-much more optimal. 
+
+See all the way at the bottom of this readme also for manually run commands for this part of the challenge ("**My solution challenge 3**"). 
+
+The site is published at: https://calm-forest-037926d03.azurestaticapps.netµ
+
+
 ## Introduction
 
 This is a possible solution for the second coding challenge. The objectives were the following:
@@ -194,3 +207,22 @@ cd api
 npm install
 npm start
 ```
+
+
+## My solution challenge 3: Create CosmosDB in Azure: 
+1. Follow instructions as here: https://docs.microsoft.com/en-us/azure/cosmos-db/create-cosmosdb-resources-portal
+2. I have chosen in my sample for a serverless CosmosDB (preview) to save on consumption in my lab
+
+## My solution challenge 3: Create an Azure Function App: 
+1. Create an Azure Function App in Consumption plan, with the node.js runtime, as described here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-function-app-portal#create-a-function-app
+2. Add following environment variables to run the code in the function app: 
+    1. AZURE_STORAGE_CONNECTIONSTRING
+    1. SQL_USERNAME
+    1. SQL_PASSWORD
+    1. SQL_SERVERNAME
+    1. SQL_DB
+    1. COSMOS_CONNECTION_STRING
+    1. COSMOS_ENDPOINT
+    1. COSMOS_KEY
+    1. COSMOS_DATABASEID": "OrdersBackend"
+    1. COSMOS_CONTAINERID": "orders"
