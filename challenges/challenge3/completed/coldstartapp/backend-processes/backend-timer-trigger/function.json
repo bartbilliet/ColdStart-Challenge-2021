@@ -5,15 +5,6 @@
       "name": "myTimer",
       "type": "timerTrigger",
       "direction": "in"
-  },
-    {
-      "name": "orderDocument",
-      "type": "cosmosDB",
-      "databaseName": "OrdersBackend",
-      "collectionName": "orders",
-      "createIfNotExists": true,
-      "connectionStringSetting": "COSMOS_CONNECTION_STRING",
-      "direction": "out"
     }
   ]
 }

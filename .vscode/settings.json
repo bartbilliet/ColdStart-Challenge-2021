@@ -1,5 +1,5 @@
 {
-    "azureFunctions.deploySubpath": "challenges\\challenge3\\completed\\coldstartapp\\backend-processes",
+    "azureFunctions.deploySubpath": "challenges\\challenge3\\completed\\coldstartapp\\test",
     "azureFunctions.postDeployTask": "npm install",
     "azureFunctions.projectLanguage": "JavaScript",
     "azureFunctions.projectRuntime": "~3",
