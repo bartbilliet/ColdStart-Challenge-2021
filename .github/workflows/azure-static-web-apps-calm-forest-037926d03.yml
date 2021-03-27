@@ -36,11 +36,11 @@ jobs:
           api_location: "/challenges/challenge3/completed/coldstartapp/api" # Api source code path - optional
           output_location: "dist" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
-      - name: Setup Node ${{ env.NODE_VERSION }} Environment for Azure Functions publishing
+      - name: Setup Node ${{ env.NODE_VERSION }} Environment
         uses: actions/setup-node@v1
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: 'Resolve Project Dependencies Using Npm' for Azure Functions publishing
+      - name: 'Resolve Project Dependencies Using Npm'
         shell: bash
         run: |
           pushd './${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}'
