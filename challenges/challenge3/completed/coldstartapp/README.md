@@ -10,7 +10,7 @@ Vue.js and node.js are not my usual frameworks, so I'm very well aware code coul
 
 See all the way at the bottom of this readme also for manually run commands for this part of the challenge ("**My solution challenge 3**"). 
 
-The site is published at: https://calm-forest-037926d03.azurestaticapps.netµ
+The site is published at: https://calm-forest-037926d03.azurestaticapps.net
 
 
 ## Introduction
