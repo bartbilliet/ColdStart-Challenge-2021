@@ -7,19 +7,15 @@ const config = {
   personalizer_baseuri: process.env.PERSONALIZER_BASEURI,
 };
 
-// Create connection to database
 const sqlConfig = {
-  authentication: {
-      options: {
-          userName: process.env.SQL_USERNAME,
-          password: process.env.SQL_PASSWORD,
-      },
-      type: "default"
-  },
+  user: process.env.SQL_USERNAME,
+  password: process.env.SQL_PASSWORD,
   server: process.env.SQL_SERVERNAME,
-  options: {
-      database: process.env.SQL_DB,
-      encrypt: true
+  database: process.env.SQL_DB,
+  pool: {
+    max: 10,
+    min: 0,
+    idleTimeoutMillis: 30000
   }
 };
 

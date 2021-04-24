@@ -5,21 +5,17 @@ const config = {
     azure_storage_connectionstring: process.env.AZURE_STORAGE_CONNECTIONSTRING
 };
 
-// Create connection to database
 const sqlConfig = {
-    authentication: {
-        options: {
-            userName: process.env.SQL_USERNAME,
-            password: process.env.SQL_PASSWORD,
-        },
-        type: "default"
-    },
+    user: process.env.SQL_USERNAME,
+    password: process.env.SQL_PASSWORD,
     server: process.env.SQL_SERVERNAME,
-    options: {
-        database: process.env.SQL_DB,
-        encrypt: true
+    database: process.env.SQL_DB,
+    pool: {
+      max: 10,
+      min: 0,
+      idleTimeoutMillis: 30000
     }
-};
+  };
 
 const cosmosConfig = {
     cosmosdb_endpoint: process.env.COSMOSDB_ENDPOINT,
