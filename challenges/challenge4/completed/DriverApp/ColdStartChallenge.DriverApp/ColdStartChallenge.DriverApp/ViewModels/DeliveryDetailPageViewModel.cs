@@ -19,6 +19,19 @@ namespace ColdStartChallenge.DriverApp.ViewModels
         private OrderStatus _orderStatus;
 
         // *** ADD THE NEEDED PROPERTIES AND COMMAND FOR MVVM BINDING ***
+        public Order Order { get; set; }
+        public OrderStatus Status
+        {
+            get => _orderStatus;
+            set
+            {
+                if (_orderStatus != value)
+                {
+                    _orderStatus = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
 
         public DeliveryDetailPageViewModel(INavigation navgiation, Guid orderId, OrderStatus orderStatus)
             : base(navgiation)
@@ -44,6 +57,8 @@ namespace ColdStartChallenge.DriverApp.ViewModels
         private async Task LoadOrder(Guid orderId, OrderStatus orderStatus)
         {
             // *** GET THE ORDER DETAILS **
+            Order = await _orderService.GetOrder(orderId, orderStatus);
+            RaisePropertyChanged(nameof(Order));
         }
 
         private async Task OnSave()
