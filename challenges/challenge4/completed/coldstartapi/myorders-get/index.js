@@ -7,7 +7,7 @@ module.exports = async function (context, req) {
     const user = getUser(req);
 
     // Get the user's orders, regardless of status
-    console.log(`User info: ${user}`);
+    console.log(`User info: ${user.userDetails}`);
     let items = await data.getMyOrders(user.userDetails);
 
     // Remove Cosmos DB technical fields when returning results

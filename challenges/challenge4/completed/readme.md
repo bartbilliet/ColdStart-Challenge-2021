@@ -8,7 +8,8 @@ No attention was paid to refactoring, catching errors, or cleaning up code, sinc
 
 Vue.js and node.js are not my usual frameworks, so I'm very well aware code could be written much-much more optimal. 
 
-The site is published at: https://calm-forest-037926d03.azurestaticapps.net
+- The webshop is published at: https://calm-forest-037926d03.azurestaticapps.net
+- The order tracking app is published at: https://lemon-pond-0fddb6c03.azurestaticapps.net
 
 ## Manual activities done for this challenge: 
 - Make sure your cosmosdb has a /id partition
