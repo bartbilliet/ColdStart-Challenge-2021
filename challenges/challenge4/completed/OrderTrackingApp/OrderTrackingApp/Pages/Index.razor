@@ -1,0 +1,29 @@
+﻿@page "/"
+@inject HttpClient Http
+
+<h1>Follow your orders:</h1>
+
+@if (orders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order date</th>
+                <th>Icecream type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <tr>
+                    <td>@order.Date</td>
+                    <td>@order.Icecream.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
