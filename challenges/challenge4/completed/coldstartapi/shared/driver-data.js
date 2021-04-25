@@ -3,7 +3,6 @@ const { queryDatabase } = require("../shared/sql-utils");
 
 const storageBaseUrl = "https://coldstartsa.blob.core.windows.net/web/assets/";
 
-// Schema for drivers
 const data = {
   drivers: [
     {
@@ -19,14 +18,24 @@ const data = {
   ],
 };
 
-/**
- * Get a driver by it's id
- * @param {integer} driverId 
- * @returns 
- */
-async function getDriverById(driverId) {
-  console.log('using database ');
-  return await queryDatabase(`SELECT [Id] as driverId, [Name] as name, [ImageUrl] as imageUrl FROM dbo.Drivers WHERE Id = ${driverId}`);
+async function getDrivers() {
+  if (config.no_database) {
+    console.log('using static data');
+    return data.drivers;
+  } else {
+    console.log('using database ');
+    return await queryDatabase(`SELECT [Id] as driverId, [Name] as name, [ImageUrl] as imageUrl FROM dbo.Drivers`)
+  };
 }
 
-module.exports = { getDriverById };
+async function getDriverById(driverId) {
+  if (config.no_database) {
+    console.log('using static data');
+    return data.drivers;
+  } else {
+    console.log('using database ');
+    return await queryDatabase(`SELECT [Id] as driverId, [Name] as name, [ImageUrl] as imageUrl FROM dbo.Drivers WHERE Id = ${driverId}`);
+  };
+}
+
+module.exports = { getDrivers, getDriverById };

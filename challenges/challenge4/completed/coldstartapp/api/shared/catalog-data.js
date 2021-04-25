@@ -1,23 +1,14 @@
-const { config } = require("./config");
-const { queryDatabase } = require("../shared/sql-utils");
+const { sqlConfig } = require("./config");
+const mssql = require('mssql');
 
-/**
- * Get all catalog items
- * @returns collection of catalog items
- */
 async function getCatalog() {
   console.log('using database ');
-  return await queryDatabase(`SELECT * FROM dbo.Icecreams`)
+
+  let pool = await mssql.connect(sqlConfig);
+  let result = await pool.request()
+    .query(`SELECT * FROM dbo.Icecreams ORDER BY [Id]`);
+
+  return result.recordset;
 }
 
-/**
- * Get a catalog item by id
- * @param {integer} itemId 
- * @returns 
- */
-async function getCatalogItemById(itemId) {
-  console.log('using database ');
-  return await queryDatabase(`SELECT * FROM dbo.Icecreams WHERE Id = ${itemId}`);
-}
-
-module.exports = { getCatalog, getCatalogItemById };
+module.exports = { getCatalog };

@@ -99,5 +99,43 @@ async function getOrdersByStatus(status) {
 
   return orders;
 }
+/**
+ * Get all orders for a given user
+ * @param {string} userName - user name
+ * @returns collection of customer orders
+ */
+async function getMyOrders(userName) {
+  let orders = null;
 
-module.exports = { addOrder, produceOrders, getOrdersByStatus, getOrderById, updateOrder };
+  if (config.no_database) {
+    orders = data.orders.find((order) => {
+      order.Status == status;
+    });
+  } else {
+    console.log('Connecting to database.');
+    const dao = getDao();
+    // Get all orders with status
+    orders = await dao.find(`SELECT * FROM c WHERE c.user = '${userName}'`);
+  }
+
+  return orders;
+}
+
+/**
+ * Remove Cosmos DB technical fields from the order collection
+ * @param {order} orders 
+ * @returns order collection without the Cosmos DB technical fields
+ */
+function removeTechnicalAttributes(orders) {
+  orders.forEach(element => {
+    delete element._rid;
+    delete element._self;
+    delete element._etag;
+    delete element._attachments;
+    delete element._ts;
+  });
+
+  return orders;
+}
+
+module.exports = { addOrder, produceOrders, getOrdersByStatus, getOrderById, getMyOrders, updateOrder, removeTechnicalAttributes };

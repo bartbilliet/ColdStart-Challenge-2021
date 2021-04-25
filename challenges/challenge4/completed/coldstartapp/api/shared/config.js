@@ -19,12 +19,4 @@ const sqlConfig = {
   }
 };
 
-const cosmosConfig = {
-  cosmosdb_endpoint: process.env.COSMOSDB_ENDPOINT,
-  cosmosdb_key: process.env.COSMOSDB_KEY,
-  cosmosdb_databaseId: process.env.COSMOSDB_DATABASEID,
-  cosmosdb_ordersContainerId: process.env.COSMOSDB_CONTAINERID,
-  cosmosdb_ordersPartitionKey: "id"
-};
-
-module.exports = { config, sqlConfig, cosmosConfig };
+module.exports = { config, sqlConfig };
