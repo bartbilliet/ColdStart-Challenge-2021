@@ -14,8 +14,7 @@ namespace OrderTrackingApp.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            //TODO: replace with my-orders after auth implementation
-            orders = await Http.GetFromJsonAsync<Order[]>("https://bbdevcoldstartchallenge.azurewebsites.net/api/orders");
+            orders = await Http.GetFromJsonAsync<Order[]>("https://bbdevcoldstartchallenge.azurewebsites.net/api/my-orders");
         }
     }
 }

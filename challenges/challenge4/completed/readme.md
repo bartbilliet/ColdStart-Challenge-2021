@@ -8,8 +8,6 @@ No attention was paid to refactoring, catching errors, or cleaning up code, sinc
 
 Vue.js and node.js are not my usual frameworks, so I'm very well aware code could be written much-much more optimal. 
 
-See all the way at the bottom of this readme also for manually run commands for this part of the challenge ("**My solution challenge 3**"). 
-
 The site is published at: https://calm-forest-037926d03.azurestaticapps.net
 
 ## Manual activities done for this challenge: 
@@ -21,3 +19,4 @@ The site is published at: https://calm-forest-037926d03.azurestaticapps.net
 ```
 - Login to the mobile app with username MADN, password can be anything (not checked).
 - When using the UWP app, make sure location services in Windows is turned on, see: https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location#troubleshoot-your-app
+
