@@ -19,5 +19,5 @@ The site is published at: https://calm-forest-037926d03.azurestaticapps.net
     INSERT INTO [dbo].[Drivers] VALUES (1, 'Daisy Driver', 'https://coldstartsa.blob.core.windows.net/web/assets/Driver1.png')
     INSERT INTO [dbo].[Drivers] VALUES (2, 'Donny Driver', 'https://coldstartsa.blob.core.windows.net/web/assets/Driver1.png')
 ```
-- Put an order in the 'delivery' state (temporary as we didn't implement the driver accepting the order yet)
 - Login to the mobile app with username MADN, password can be anything (not checked).
+- When using the UWP app, make sure location services in Windows is turned on, see: https://docs.microsoft.com/en-us/windows/uwp/maps-and-location/get-location#troubleshoot-your-app

@@ -15,6 +15,26 @@ namespace ColdStartChallenge.DriverApp.Services
             try
             {
                 // *** GET THE CURRENT LOCATION ***
+
+                var status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+                if (status == PermissionStatus.Granted)
+                {
+                    var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                    _cts = new CancellationTokenSource();
+                    var location = await Geolocation.GetLocationAsync(request, _cts.Token);
+
+                    if (location != null)
+                    {
+                        Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                        return location;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("User didn't grant access to location");
+                    return null;
+                }
+
             }
             catch (Exception ex)
             {
@@ -35,6 +55,12 @@ namespace ColdStartChallenge.DriverApp.Services
             try
             {
                 // *** GECODE THE CURRENT LOCATION **
+                var location = await GetLocation();
+                if(location != null)
+                {
+                    var firstPlacemark = (await Geocoding.GetPlacemarksAsync(location.Latitude, location.Longitude)).FirstOrDefault();
+                    return (location, firstPlacemark);
+                }
             }
             catch (Exception ex)
             {               
