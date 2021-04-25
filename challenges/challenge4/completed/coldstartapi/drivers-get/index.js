@@ -2,7 +2,6 @@ const driverData = require('../shared/driver-data');
 
 module.exports = async function (context, req) {
   try {
-    // Get the user's orders, regardless of status
     console.log('Get drivers list');
     let items = await driverData.getDrivers();
 

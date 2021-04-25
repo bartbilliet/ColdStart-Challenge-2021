@@ -16,10 +16,11 @@ namespace ColdStartChallenge.DriverApp.ViewModels
         private readonly DriverService _driverService;
 
         private Guid _orderId;
-        private OrderStatus _orderStatus;
 
         // *** ADD THE NEEDED PROPERTIES AND COMMAND FOR MVVM BINDING ***
         public Order Order { get; set; }
+
+        private OrderStatus _orderStatus;
         public OrderStatus Status
         {
             get => _orderStatus;
@@ -28,6 +29,20 @@ namespace ColdStartChallenge.DriverApp.ViewModels
                 if (_orderStatus != value)
                 {
                     _orderStatus = value;
+                    RaisePropertyChanged();
+                }
+            }
+        }
+
+        private Boolean _isStatusVisible;
+        public Boolean IsStatusVisible
+        {
+            get => _isStatusVisible;
+            set
+            {
+                if (_isStatusVisible != value)
+                {
+                    _isStatusVisible = value;
                     RaisePropertyChanged();
                 }
             }
@@ -59,11 +74,34 @@ namespace ColdStartChallenge.DriverApp.ViewModels
             // *** GET THE ORDER DETAILS **
             Order = await _orderService.GetOrder(orderId, orderStatus);
             RaisePropertyChanged(nameof(Order));
+
+            if(Order != null)
+            {
+                //Only allow to make the accept for delivery button visible when the status is 'ready' by the factory
+                if (Order.OrderStatus == OrderStatus.Ready)
+                {
+                    IsStatusVisible = true;
+                }
+                else
+                {
+                    IsStatusVisible = false;
+                }
+            }
+
         }
 
+        public IAsyncCommand SaveCommand => new AsyncCommand(OnSave);
         private async Task OnSave()
         {
             // *** SAVE THE CURRENT ORDER WITH IT'S NEW STATE
+            Order.OrderStatus = OrderStatus.Delivering;
+
+            Console.WriteLine(AppData.Instance.User);
+            Order.Driver = AppData.Instance.User;
+
+            await _orderService.UpdateOrder(Order);
         }
+
     }
+    
 }
