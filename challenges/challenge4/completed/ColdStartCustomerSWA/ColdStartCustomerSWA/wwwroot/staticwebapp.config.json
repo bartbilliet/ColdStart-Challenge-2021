@@ -9,10 +9,10 @@
       "statusCode": "404"
     },
     {
-      "route": "/api/catalog"
+      "route": "/api/my-orders"
     },
     {
-      "route": "/api/recommendations"
+      "route": "/api/orders"
     },
     {
       "route": "/api/*",
