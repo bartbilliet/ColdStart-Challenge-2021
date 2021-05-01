@@ -9,7 +9,13 @@ No attention was paid to refactoring, catching errors, or cleaning up code, sinc
 Vue.js and node.js are not my usual frameworks, so I'm very well aware code could be written much-much more optimal. 
 
 - The webshop is published at: https://calm-forest-037926d03.azurestaticapps.net
+  - It is a vue.js front-end, and node.js back-end, hosted on Azure Static Web Apps. 
 - The order tracking app is published at: https://lemon-pond-0fddb6c03.azurestaticapps.net
+  - It is a Blazor front-end, and node.js back-end, hosted on Azure Static Web apps. 
+- The Driver app has been tested on UWP only. 
+  - It is a Xamarin front-end, and node.js back-end hosted on an Azure Functions plan. 
+- There are a few background processes (queue trigger to accept new orders in the factory, timer trigger to simulate order processing by the factory, cosmosdb trigger to update order tracking via SignalR)
+  - Theses background processes are hosted on the same Azure Functions plan than what the Driver App is using. Some repetition of code was unfortunately unavoidable here as Azure Static Web Apps only allow HTTP triggers (no timer, queue, cosmosdb triggers). 
 
 ## Manual activities done for this challenge: 
 - Make sure your cosmosdb has a /id partition

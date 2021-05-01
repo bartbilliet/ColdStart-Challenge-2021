@@ -33,7 +33,7 @@ module.exports = async function (context, req) {
 
     console.log('Updating order');
 
-    await data.updateOrder(order, status, lastPosition, driverId, driverName, driverImageUrl);
+    await data.updateOrder(order, status, null, lastPosition, driverId, driverName, driverImageUrl);
 
     console.log('Done updating order');
 
