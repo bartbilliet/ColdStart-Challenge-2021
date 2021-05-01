@@ -26,7 +26,7 @@ namespace ColdStartCustomerSWA
         {
             Console.WriteLine("Env var: " + configuration["ColdStartApiUrl"]);
 
-            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "api/orders?status=Delivering");   //TODO: switch to my-orders API
+            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "api/my-orders");
             HttpResponseMessage response = await httpClient.SendAsync(newRequest);
 
             List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(await response.Content.ReadAsStringAsync());

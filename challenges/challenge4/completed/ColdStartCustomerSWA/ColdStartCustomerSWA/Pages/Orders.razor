@@ -4,8 +4,7 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @inject OrdersClient OrdersClient
 
-<h3>Orders</h3>
-<br />
+<h3>Follow your order:</h3>
 
 <ColdStartCustomerSWA.ComponentsLibrary.Map.Map Markers="@Markers" />
 
@@ -17,6 +16,7 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Markers = new List<Marker>();   //Avoid null issue when map is loaded before we got our marker locations
         await LoadMarkers();
     }
 
