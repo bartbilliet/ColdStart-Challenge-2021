@@ -73,6 +73,7 @@
             .Build();
 
         //On SignalR "orderUpdated" hub message received, execute following:
+        //Could be improved to send the message only to the user who the order belongs to
         hubConnection.On<Order>("orderUpdated", order =>
         {
             Console.WriteLine("message received: " + order.Id);
