@@ -2,7 +2,11 @@
 
 @using System.Security.Claims
 @using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.SignalR.Client
+
 @inject OrdersClient OrdersClient
+@inject NavigationManager NavigationManager
+@implements IAsyncDisposable
 
 <AuthorizeView>
     <Authorized>
@@ -43,13 +47,44 @@
 
     private ClaimsPrincipal AuthenticationStateUser { get; set; }
 
+    private HubConnection hubConnection;
+    private List<string> messages = new List<string>();
+    private string userInput;
+    private string messageInput;
+
     protected override async Task OnParametersSetAsync()
     {
         AuthenticationState authenticationState;
 
         authenticationState = await authenticationStateTask;
         this.AuthenticationStateUser = authenticationState.User;
+    }
 
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadOrders();
+
+        //Access negotiate method to get SignalR connection information
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/api"))
+            .Build();
+
+        //On SignalR "orderUpdated" hub message received, execute following:
+        hubConnection.On<Order>("orderUpdated", order =>
+        {
+            Console.WriteLine("message received: " + order.Id);
+
+        //Reload the view
+        StateHasChanged();
+        });
+
+        //Start the connectoin
+        await hubConnection.StartAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await hubConnection.DisposeAsync();
     }
 
     async Task<IEnumerable<Order>> LoadOrders()
@@ -57,4 +92,5 @@
         Console.WriteLine("Load orders");
         return await OrdersClient.GetMyOrders();
     }
+
 }

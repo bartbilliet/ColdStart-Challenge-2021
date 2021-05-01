@@ -26,7 +26,7 @@ namespace ColdStartCustomerSWA
         {
             Console.WriteLine("Env var: " + configuration["ColdStartApiUrl"]);
 
-            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "https://lemon-pond-0fddb6c03.azurestaticapps.net/api/orders?status=Delivering");
+            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "api/orders?status=Delivering");   //TODO: switch to my-orders API
             HttpResponseMessage response = await httpClient.SendAsync(newRequest);
 
             List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(await response.Content.ReadAsStringAsync());
@@ -37,7 +37,7 @@ namespace ColdStartCustomerSWA
 
         public async Task<Order> GetOrder(Guid orderId)
         {
-            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "https://lemon-pond-0fddb6c03.azurestaticapps.net/api/orders/" + orderId);
+            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "api/orders/" + orderId);
             HttpResponseMessage response = await httpClient.SendAsync(newRequest);
 
             Order order = JsonConvert.DeserializeObject<Order>(await response.Content.ReadAsStringAsync());

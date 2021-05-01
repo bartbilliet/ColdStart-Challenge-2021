@@ -1,0 +1,22 @@
+{
+    "disabled": false,
+    "bindings": [
+      {
+        "type": "cosmosDBTrigger",
+        "name": "updatedOrders",
+        "direction": "in",
+        "databaseName": "OrdersBackend",
+        "collectionName": "orders",
+        "ConnectionStringSetting": "COSMOS_CONNECTION_STRING",
+        "feedPollDelay": 1000,
+        "createLeaseCollectionIfNotExists": true
+      },
+      {
+        "type": "signalR",
+        "name": "signalRMessages",
+        "hubName": "orderupdates",
+        "connectionStringSetting": "AzureSignalRConnectionString",
+        "direction": "out"
+      }
+    ]
+  }
