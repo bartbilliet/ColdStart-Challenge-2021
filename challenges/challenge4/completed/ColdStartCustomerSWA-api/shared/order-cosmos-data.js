@@ -48,7 +48,7 @@ async function produceOrders() {
 async function getOrderById(orderId) {
   const dao = getDao();
 
-  // Get all orders with status 'Accepted'
+  // Get all orders by ID
   const orders = await dao.find(`SELECT * FROM c WHERE lower(c.id) = lower('${orderId}')`);
 
   if (orders.length > 0) {

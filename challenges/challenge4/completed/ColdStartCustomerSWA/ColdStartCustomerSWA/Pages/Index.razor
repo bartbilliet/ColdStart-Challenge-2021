@@ -55,7 +55,6 @@
     async Task<IEnumerable<Order>> LoadOrders()
     {
         Console.WriteLine("Load orders");
-        Console.WriteLine(this.AuthenticationStateUser);
-        return await OrdersClient.GetOrders(this.AuthenticationStateUser.FindFirst(c => c.Type.Contains("nameidentifier"))?.Value);
+        return await OrdersClient.GetMyOrders();
     }
 }

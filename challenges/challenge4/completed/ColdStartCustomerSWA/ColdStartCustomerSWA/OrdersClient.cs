@@ -22,25 +22,27 @@ namespace ColdStartCustomerSWA
             this.httpClient = httpClient;
         }
 
-        public async Task<IEnumerable<Order>> GetOrders(string username)
+        public async Task<IEnumerable<Order>> GetMyOrders()
         {
-            Console.WriteLine("username: " + username);
+            Console.WriteLine("Env var: " + configuration["ColdStartApiUrl"]);
 
-            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, configuration["ColdStartApiUrl"] + "my-orders");
+            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "https://lemon-pond-0fddb6c03.azurestaticapps.net/api/orders?status=Delivering");
             HttpResponseMessage response = await httpClient.SendAsync(newRequest);
 
             List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(await response.Content.ReadAsStringAsync());
 
-            return orders
-                .Where(o => o.User == username)
-                .OrderByDescending(o => o.Date).ToList();
+            return orders.OrderByDescending(o => o.Date).ToList();
         }
 
 
         public async Task<Order> GetOrder(Guid orderId)
         {
-            // TODO: get order by orderId
-            return new Order();
+            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "https://lemon-pond-0fddb6c03.azurestaticapps.net/api/orders/" + orderId);
+            HttpResponseMessage response = await httpClient.SendAsync(newRequest);
+
+            Order order = JsonConvert.DeserializeObject<Order>(await response.Content.ReadAsStringAsync());
+
+            return order;
         }
     }
 }

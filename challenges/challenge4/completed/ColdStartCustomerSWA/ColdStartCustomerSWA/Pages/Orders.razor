@@ -1,0 +1,49 @@
+﻿@page "/orders/{OrderId}"
+
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Components.Authorization
+@inject OrdersClient OrdersClient
+
+<h3>Orders</h3>
+<br />
+
+<ColdStartCustomerSWA.ComponentsLibrary.Map.Map Markers="@Markers" />
+
+@code {
+    [Parameter]
+    public String OrderId { get; set; }
+
+    public List<Marker> Markers { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadMarkers();
+    }
+
+    async Task LoadMarkers()
+    {
+        Console.WriteLine("Load markers");
+
+        Order selectedOrder = await OrdersClient.GetOrder(Guid.Parse(OrderId));
+
+        Markers = new List<Marker>();
+
+        //Delivery location
+        Marker markerDelivery = new Marker();
+        markerDelivery.Description = "Delivery location";
+        markerDelivery.Y = Convert.ToDouble(selectedOrder.DeliveryPosition.Split(',')[0]);
+        markerDelivery.X = Convert.ToDouble(selectedOrder.DeliveryPosition.Split(',')[1]);
+        Markers.Add(markerDelivery);
+
+        //Driver location
+        Marker markerDriver = new Marker();
+        markerDriver.Description = "Driver location";
+        markerDriver.Y = Convert.ToDouble(selectedOrder.LastPosition.Split(',')[0]);
+        markerDriver.X = Convert.ToDouble(selectedOrder.LastPosition.Split(',')[1]);
+        Markers.Add(markerDriver);
+
+    }
+
+
+
+}
