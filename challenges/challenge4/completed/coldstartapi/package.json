@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@azure/cosmos": "^3.9.5",
+    "node-geocoder": "^3.27.0",
     "tedious": "^11.0.3"
   },
   "devDependencies": {}

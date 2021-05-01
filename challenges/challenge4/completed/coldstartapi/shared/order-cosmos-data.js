@@ -1,5 +1,11 @@
 const { config, cosmosConfig } = require("./config");
 const cosmosdb = require("./cosmosdb-utils");
+const NodeGeocoder = require('node-geocoder');
+
+//Config
+const GeoCoderOptions = {
+  provider: 'openstreetmap',
+};
 
 const data = {
   orders: [],
@@ -32,10 +38,22 @@ async function produceOrders() {
   // Get all orders with status 'Accepted'
   const acceptedOrders = await getOrdersByStatus('Accepted');
 
+  //Create instance of geocoder for address to GPS conversion
+  const geocoder = NodeGeocoder(GeoCoderOptions);
+
   // Update all orders to 'Ready' status
   acceptedOrders.forEach(async (order) => {
-    console.log(`Updating order ${order.id} to Ready`);
-    await updateOrder(order, 'Ready');
+    console.log(`Updating order ${order.id} to Ready and set delivery GPS location`);
+
+    //Calculate delivery GPS coordinates
+    const res = await geocoder.geocode(order.fullAddress);
+    if(res) {
+      const formattedGPS = res[0].latitude + ", " + res[0].longitude;
+      console.log(formattedGPS);
+      order.deliveryPosition = formattedGPS;
+    }
+
+    await updateOrder(order, 'Ready', order.deliveryPosition);
   });
 }
 
@@ -67,11 +85,14 @@ async function getOrderById(orderId) {
  * @param {string} newDriverName - new driver name
  * @param {string} newDriverImageUrl - new driver image URL
  */
-async function updateOrder(order, newStatus = null, newLastPosition = null, newDriverId = null, newDriverName = null, newDriverImageUrl = null) {
+async function updateOrder(order, newStatus = null, deliveryPosition = null, newLastPosition = null, newDriverId = null, newDriverName = null, newDriverImageUrl = null) {
   const dao = getDao();
 
   if (newStatus) {
     order.status = newStatus;
+  }
+  if(deliveryPosition) {
+    order.deliveryPosition = deliveryPosition;
   }
   if (newLastPosition) {
     order.lastPosition = newLastPosition;

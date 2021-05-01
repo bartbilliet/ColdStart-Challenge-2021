@@ -27,15 +27,15 @@
                     <div class="col">
                         Status: <strong>@item.Status</strong>
                     </div>
-                    @if (item.Status == "Delivering")
-                    {
-                        <div class="col flex-grow-0">
+                    <div class="col flex-grow-0">
+                        @if (item.Status == "Delivering")
+                        {
                             <a href="orders/@item.Id" class="btn btn-success">
                                 Track &gt;
                             </a>
-                        </div>
-                    }
-                </Item>
+                        }
+                    </div>
+                    </Item>
             </TemplatedList>
         </div>
     </Authorized>
