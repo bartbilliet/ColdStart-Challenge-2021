@@ -24,7 +24,7 @@ namespace ColdStartCustomerSWA
 
         public async Task<IEnumerable<Order>> GetOrders(string username)
         {
-            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "https://bbdevcoldstartchallenge.azurewebsites.net/api/orders"); //TODO: temp changed from my-orders to bypass cross-domain auth issue for now
+            HttpRequestMessage newRequest = new HttpRequestMessage(HttpMethod.Get, "https://lemon-pond-0fddb6c03.azurestaticapps.net/api/my-orders");
             HttpResponseMessage response = await httpClient.SendAsync(newRequest);
 
             List<Order> orders = JsonConvert.DeserializeObject<List<Order>>(await response.Content.ReadAsStringAsync());
